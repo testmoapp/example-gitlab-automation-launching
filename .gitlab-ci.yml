@@ -36,8 +36,8 @@ build:
     - echo "ENVIRONMENT=${ENVIRONMENT}" > variables.env
     - echo "DATASET=${DATASET}" > variables.env
   artifacts:
-  reports:
-    dotenv: variables.env
+    reports:
+      dotenv: variables.env
 
 test-setup:
   stage: test-setup
