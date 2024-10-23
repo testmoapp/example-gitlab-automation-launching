@@ -33,6 +33,11 @@ build:
       fi
     - echo "Building for environment ${ENVIRONMENT}"
     - echo "Using dataset ${DATASET}"
+    - echo "ENVIRONMENT=${ENVIRONMENT}" > variables.env
+    - echo "DATASET=${DATASET}" > variables.env
+  artifacts:
+  reports:
+    dotenv: variables.env
 
 test-setup:
   stage: test-setup
