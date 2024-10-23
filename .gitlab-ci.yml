@@ -15,8 +15,8 @@ stages:
   - deploy
 
 variables:
-  ENVIRONMENT: "staging"
-  DATASET: "small"
+  ENVIRONMENT:
+  DATASET:
 
 build:
   stage: build
