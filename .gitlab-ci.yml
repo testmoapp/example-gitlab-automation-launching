@@ -14,10 +14,25 @@ stages:
   - test-complete
   - deploy
 
+variables:
+  ENVIRONMENT: "staging"
+  DATASET: "small"
+
 build:
   stage: build
   script:
-    - echo "Building .."
+    - >
+      if [[ -z "${ENVIRONMENT}" ]]; then
+        echo "No environment specified. Defaulting to 'staging'."
+        export ENVIRONMENT="staging"
+      fi
+    - >
+      if [[ -z "${DATASET}" ]]; then
+        echo "No dataset specified. Defaulting to 'small'."
+        export DATASET="small"
+      fi
+    - echo "Building for environment: ${ENVIRONMENT}"
+    - echo "Using dataset: ${DATASET}"
 
 test-setup:
   stage: test-setup
@@ -90,5 +105,5 @@ test-complete:
 deploy:
   stage: deploy
   script:
-    - echo "Deploying to ${ENVIRONMENT:-staging} environment"
-    - echo "Using ${DATASET:-small} dataset"
+    - echo "Deploying to ${ENVIRONMENT} environment"
+    - echo "Using ${DATASET} dataset"
