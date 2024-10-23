@@ -31,8 +31,8 @@ build:
         echo "No dataset specified. Defaulting to 'small'."
         export DATASET="small"
       fi
-    - echo "Building for environment: ${ENVIRONMENT}"
-    - echo "Using dataset: ${DATASET}"
+    - echo "Building for environment ${ENVIRONMENT}"
+    - echo "Using dataset ${DATASET}"
 
 test-setup:
   stage: test-setup
