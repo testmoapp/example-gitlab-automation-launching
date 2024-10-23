@@ -14,26 +14,29 @@ stages:
   - test-complete
   - deploy
 
-variables:
-  ENVIRONMENT:
-    value: "test"
-    options:
-      - "production"
-      - "staging"
-      - "test"
-    description: "Which environment to deploy to; Defaults to test."
-  DATASET:
-    value: "none"
-    options:
-      - "small"
-      - "large"
-      - "none"
-    description: "Which dataset to use; Defaults to none."
-
 build:
   stage: build
+  variables:
+    ENVIRONMENT:
+      value: "test"
+      options:
+        - "production"
+        - "staging"
+        - "test"
+      description: "Which environment to deploy to; Defaults to test."
+    DATASET:
+      value: "none"
+      options:
+        - "small"
+        - "large"
+        - "none"
+      description: "Which dataset to use; Defaults to none."
   script:
     - echo "Building .."
+  artifacts:
+    paths:
+      - .env
+    expire_in: 15 minutes
 
 test-setup:
   stage: test-setup
