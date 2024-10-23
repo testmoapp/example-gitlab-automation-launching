@@ -14,17 +14,6 @@ stages:
   - test-complete
   - deploy
 
-spec:
-  inputs:
-    environment:
-      description: Which environment to deploy to
-      default: staging
-      options: ["test", "staging", "production"]
-    dataset:
-      description: Which dataset to use
-      default: small
-      options: ["small", "large"]
-
 build:
   stage: build
   script:
@@ -101,5 +90,5 @@ test-complete:
 deploy:
   stage: deploy
   script:
-    - echo "Deploying to $[[ inputs.environment ]] environment"
-    - echo "Using $[[ inputs.dataset ]] dataset"
+    - echo "Deploying to ${ENVIRONMENT:-staging} environment"
+    - echo "Using ${DATASET:-small} dataset"
