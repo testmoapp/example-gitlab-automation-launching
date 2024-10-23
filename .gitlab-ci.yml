@@ -16,18 +16,19 @@ stages:
 
 variables:
   ENVIRONMENT:
-    value: "staging"
+    value: "test"
     options:
       - "production"
       - "staging"
       - "test"
-    description: Which environment to deploy to
+    description: "Which environment to deploy to; Defaults to test."
   DATASET:
-    value:
+    value: "none"
     options:
       - "small"
       - "large"
-    description: Which dataset to use
+      - "none"
+    description: "Which dataset to use; Defaults to none."
 
 build:
   stage: build
