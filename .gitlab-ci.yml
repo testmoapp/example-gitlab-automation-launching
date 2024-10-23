@@ -16,28 +16,23 @@ stages:
 
 variables:
   ENVIRONMENT:
+    value: "staging"
+    options:
+      - "production"
+      - "staging"
+      - "test"
+    description: Which environment to deploy to
   DATASET:
+    value:
+    options:
+      - "small"
+      - "large"
+    description: Which dataset to use
 
 build:
   stage: build
   script:
-    - >
-      if [[ -z "${ENVIRONMENT}" ]]; then
-        echo "No environment specified. Defaulting to 'staging'."
-        export ENVIRONMENT="staging"
-      fi
-    - >
-      if [[ -z "${DATASET}" ]]; then
-        echo "No dataset specified. Defaulting to 'small'."
-        export DATASET="small"
-      fi
-    - echo "Building for environment ${ENVIRONMENT}"
-    - echo "Using dataset ${DATASET}"
-    - echo "ENVIRONMENT=${ENVIRONMENT}" > variables.env
-    - echo "DATASET=${DATASET}" > variables.env
-  artifacts:
-    reports:
-      dotenv: variables.env
+    - echo "Building .."
 
 test-setup:
   stage: test-setup
